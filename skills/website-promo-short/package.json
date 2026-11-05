@@ -1,0 +1,16 @@
+{
+  "name": "website-promo-short",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Turn a web page into a vertical 1080x1920 promo short: a scripted phone-width click-through, recorded off the screen, framed with a URL band and an end card. A Claude Code skill.",
+  "license": "MIT",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "doctor": "node scripts/doctor.cjs"
+  },
+  "dependencies": {
+    "puppeteer-core": "25.16.0"
+  }
+}

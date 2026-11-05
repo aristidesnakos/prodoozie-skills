@@ -1,0 +1,107 @@
+{
+  "name": "website-promo-short",
+  "version": "0.1.0",
+  "license": "MIT",
+  "install": {
+    "to": "~/.claude/skills/website-promo-short/",
+    "note": "Each path is relative to this manifest's own URL. Put every file at the same path under the folder above, check its sha256, then run `npm install` in that folder and `node scripts/doctor.cjs`."
+  },
+  "files": [
+    {
+      "path": "LICENSE",
+      "bytes": 1079,
+      "sha256": "1560207fb50c5ae76d2673e84979bd8cdd6ba2547010065326649261ede8948b"
+    },
+    {
+      "path": "SKILL.md",
+      "bytes": 8762,
+      "sha256": "c088ab7ff413247554307f495fa0e7473cc5364789afe8bc0683fcfc650f0e6d"
+    },
+    {
+      "path": "examples/demo-site/promo.json",
+      "bytes": 1785,
+      "sha256": "49ac88888422b7345070e0aa79a4e05077df01dccd0a993dd7a2104af7a5d415"
+    },
+    {
+      "path": "examples/demo-site/server.cjs",
+      "bytes": 5778,
+      "sha256": "45e5be14443dc636c556c8d1ecb105a9d157f4821bbb196a2bf160f05f1726b3"
+    },
+    {
+      "path": "package-lock.json",
+      "bytes": 11693,
+      "sha256": "6774c075c11f1b67ee624126c95573a3e317f8d6f99d095479cc91dc71f289e8"
+    },
+    {
+      "path": "package.json",
+      "bytes": 457,
+      "sha256": "edaa7d45acb84e52e64bc430326d1539af4124cf4f5806e79e16025c61679f35"
+    },
+    {
+      "path": "references/gotchas.md",
+      "bytes": 6461,
+      "sha256": "864a939cd8c7076b8fb34b03ebc5b6c27993943ce8c890d2d0e9e3d4436c7c7c"
+    },
+    {
+      "path": "references/promo-json.md",
+      "bytes": 6747,
+      "sha256": "e5c4242b0fa4e9f7dae350b1c3aff8dc7e98af801aa6ae138c157e78f8c7a774"
+    },
+    {
+      "path": "scripts/analyze-take.cjs",
+      "bytes": 4298,
+      "sha256": "4290fdbb2ca7cee5bdcc12c9395e472b22146b06933fba3e345afce3ccc8cbf0"
+    },
+    {
+      "path": "scripts/build-video.cjs",
+      "bytes": 4499,
+      "sha256": "1a97b025b8723a7c4c569870e130cde8495f0b118729ec964791db62f4c0093b"
+    },
+    {
+      "path": "scripts/doctor.cjs",
+      "bytes": 11837,
+      "sha256": "eaf3965aa92c53d1a165d55290837512fe56a13fa4701ce409cc5d6c14e67334"
+    },
+    {
+      "path": "scripts/find-take.cjs",
+      "bytes": 4477,
+      "sha256": "94ebfd6dcd0fb4c9c7634ad748f485734f312ba6126a4541983cdcc103c953d3"
+    },
+    {
+      "path": "scripts/lib.cjs",
+      "bytes": 11387,
+      "sha256": "19eed97d951d7981db9b76f7daac3a7d2538b26686624999b380c579fcb7c6b0"
+    },
+    {
+      "path": "scripts/mix-music.cjs",
+      "bytes": 3579,
+      "sha256": "9f0f2987b5811ed3af4a00f319725fefcd122f988a39eb9a2a8051c68d0c7ffe"
+    },
+    {
+      "path": "scripts/probe.cjs",
+      "bytes": 5532,
+      "sha256": "5772a03ff2d4456b97a0965eafebf315cd0f71b29443845ba628865aac909b29"
+    },
+    {
+      "path": "scripts/render-assets.cjs",
+      "bytes": 13473,
+      "sha256": "94e330918acb2a305cf6e8e3cfd8585cbf6c01c55d484409e4c1749e3924af0a"
+    },
+    {
+      "path": "scripts/run.cjs",
+      "bytes": 30686,
+      "sha256": "6e93ff580de77a246c273a2024673eacfd2a0579026b67bad6fe5b427f97d81d"
+    },
+    {
+      "path": "scripts/selftest.cjs",
+      "bytes": 12795,
+      "sha256": "028388b5637feafb62c11a7a2394a2b955331ca9ea4c730ceec056f462c4649f"
+    }
+  ],
+  "zip": {
+    "path": "website-promo-short.zip",
+    "bytes": 59490,
+    "sha256": "1f352a2792b2694c35f51c250ac9d8d0aa0ccbfc8bc239e318533ea33f6b752f",
+    "note": "The same files as one archive; unzip into ~/.claude/skills/ and run `npm install` in the new folder."
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "name": "postcard-promo",
+  "url": "http://127.0.0.1:9477/roasts",
+  "start": "http://127.0.0.1:9477/",
+  "urlHost": "postcard.example",
+  "urlPath": "/roasts",
+  "userAgentMarker": "postcard-promo/1.0",
+
+  "viewport": { "width": 428, "height": 761 },
+  "dismiss": ["Necessary only"],
+  "hide": ["Chat"],
+  "workDir": "work",
+  "outDir": ".",
+
+  "stills": ["A:start", "B:roasts", "C:table", "D:added"],
+
+  "steps": [
+    { "mark": "A:start" },
+    { "hold": 1300 },
+    { "cursor": true },
+    { "scrollTo": { "tag": "a", "text": "See this week's roasts", "at": 470, "ms": 1400 } },
+    { "hold": 150 },
+    { "click": { "tag": "a", "text": "See this week's roasts", "glideMs": 650 } },
+    { "waitPath": "/roasts" },
+    { "waitFor": "table" },
+    { "blur": true },
+    { "mark": "B:roasts" },
+    { "hold": 1400 },
+    { "scrollTo": { "css": ".scroller", "at": 140, "ms": 1300 } },
+    { "mark": "C:table" },
+    { "hold": 1600 },
+    { "click": { "css": "button.sub", "glideMs": 700 } },
+    { "mark": "D:added" },
+    { "hold": 1800 },
+    { "park": true },
+    { "cursor": false },
+    { "hold": 400 }
+  ],
+
+  "tailSec": 0.15,
+  "endHoldSec": 3.6,
+  "transition": "slideup",
+  "transitionSec": 0.45,
+
+  "brand": {
+    "cream": "#F5EDE0",
+    "sagePale": "#E7D9C4",
+    "accent": "#B4532A",
+    "accentInk": "#7A3412",
+    "ink": "#2A1E14",
+    "ink2": "#4A3828",
+    "serif": "Fraunces",
+    "sans": "Inter"
+  },
+
+  "endcard": {
+    "eyebrow": "THIS WEEK'S ROASTS",
+    "headline": ["Coffee, posted", [{ "text": "every week", "accent": true }]],
+    "sub": ["Four roasts from twelve farms.", "A pretend shop, for the demo."],
+    "mascot": null,
+    "ctaLabel": "See the roasts",
+    "footerLeft": "A demo shop",
+    "footerRight": "postcard.example"
+  },
+
+  "music": null
+}
