@@ -49,13 +49,17 @@ doctor -> probe -> storyboard (promo.json) -> rehearse (headless) -> overlays ->
 
 1. **Ask**, only what is not said: which page is promoted and what is the story (a quiz: answer it; a tool: use it; a page to read: scroll it; a page with
    no main action, such as a dashboard: ask what to show, what stays out, and what the viewer should do after); where the video starts (the page that links
-   to it makes "click through to it" real; check what is above the fold there); music or none; the two permission questions above (own site? terms read?).
+   to it makes "click through to it" real; check what is above the fold there: a home page that ranks its content may open on a different story);
+   music or none; the two permission questions above (own site? terms read?).
 2. **Probe.** `node $S/probe.cjs <url> --out probe [--config promo.json]` prints the links and buttons with their y positions, flags wrapped links,
-   lists floating chrome to hide, and saves a phone-width screenshot: Read it. `--config` loads the page the way `run.cjs` will (marker, banner button).
+   lists floating chrome to hide, and saves a phone-width screenshot: Read it, and check it is the phone layout with nothing overflowing sideways.
+   `--config` loads the page the way `run.cjs` will (marker, banner button). For a page with no main action, offer two or three things to show
+   from what the probe lists (its sections, its cards).
 3. **Storyboard.** Write `promo.json`: 30-40 s, a 1-2 s hook, an eased scroll to the link, the click, about 2.4 s a beat, a 3 s hold on the payoff.
 4. **Rehearse headless.** `STILLS=0 node $S/run.cjs rehearse promo.json` for true timing and any step error, then without `STILLS=0` and look at
    `work/rehearsal/`: the answered state, anything with a banner, a floating button or a focus ring. Fix before touching the screen. Gate: no step
-   error, no banner or chat button in view, total under about 45 s. A rehearsal cannot show a scrollbar (step 8).
+   error, no module result saying it could not finish, no banner or chat button in view, total under about 45 s. A rehearsal cannot show a
+   scrollbar (step 8).
 5. **Overlays.** `node $S/render-assets.cjs promo.json` writes `work/frame.png` and `work/endcard.png`; Read both. It measures them: a headline too wide
    for the card shrinks (to 60%) and says so, a URL that does not fit stops the run (shorten `urlPath`). It needs the internet for the card's fonts.
 6. **Record.** Ask first (hard stops), then:
@@ -75,6 +79,6 @@ doctor -> probe -> storyboard (promo.json) -> rehearse (headless) -> overlays ->
 8. **The first recording's edges.** Read a 40 px strip at the right edge and one at the bottom of a frame mid-scroll and one under any card that
    scrolls sideways: a grey bar or thumb means a scroller the overlay missed. Record again.
 9. **Music (optional).** `node $S/mix-music.cjs promo.json --file <track> [--lufs -24]` writes `<name>-music.mp4` without re-encoding the picture
-   and prints loudness and peak. You cannot listen: say you measured it.
+   and prints loudness and peak. You cannot listen: say you measured it, ask how it sounds, and re-run with another `--lufs` if asked (it overwrites).
 10. **Report.** The files (`out/<name>.mp4`, the music cut), what is scripted (the cursor, any deliberate action), where the raw recording is and that
     it stays private, the times of the visits for the site's logs, and anything unverified (not listened to; not watched on a phone).

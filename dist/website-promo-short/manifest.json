@@ -14,8 +14,8 @@
     },
     {
       "path": "SKILL.md",
-      "bytes": 8762,
-      "sha256": "c088ab7ff413247554307f495fa0e7473cc5364789afe8bc0683fcfc650f0e6d"
+      "bytes": 9150,
+      "sha256": "0a5fa277f41fd0762aaadfad3bbecf7325cba904b184fdf78c0d0ae5b48724ff"
     },
     {
       "path": "examples/demo-site/promo.json",
@@ -39,8 +39,8 @@
     },
     {
       "path": "references/gotchas.md",
-      "bytes": 6461,
-      "sha256": "864a939cd8c7076b8fb34b03ebc5b6c27993943ce8c890d2d0e9e3d4436c7c7c"
+      "bytes": 8076,
+      "sha256": "3bf0ec1a2215aed126acf59411c047df9716b1e6002ddbedd8ebd06d2e6704a4"
     },
     {
       "path": "references/promo-json.md",
@@ -100,8 +100,8 @@
   ],
   "zip": {
     "path": "website-promo-short.zip",
-    "bytes": 59490,
-    "sha256": "1f352a2792b2694c35f51c250ac9d8d0aa0ccbfc8bc239e318533ea33f6b752f",
+    "bytes": 60352,
+    "sha256": "03352a08a0e32c1a2e11f1e51669c66ad90d6f82601460b91b75edfc1c84dd86",
     "note": "The same files as one archive; unzip into ~/.claude/skills/ and run `npm install` in the new folder."
   }
 }

@@ -28,7 +28,8 @@ Each of these cost a retake or a day once.
 - **Park the real pointer before scrolling.** A link that scrolls under a resting pointer shows the same bubble as hovering it. After a button
   click, and before any `scrollTo` or `scrollBy`, add `{"park": true}`.
 - **The macOS scrollbar shows while a page scrolls** (a grey thumb that makes a phone video look like a desktop window). The overlay hides every
-  scroller's, the page's and any card that scrolls sideways. Headless Chrome draws no scrollbar, so a rehearsal's stills are clean either way:
+  scroller's, the page's and any card that scrolls sideways. Headless Chrome draws no scrollbar, so a rehearsal's stills are clean either way,
+  and a screenshot of the real window taken over DevTools showed none even without the fix:
   **the first real recording must have its right edge and bottom edge looked at as strips** (crop a frame mid-scroll and one under any table that
   scrolls sideways, about 40 px wide on the right and 40 px tall at the bottom). A grey bar or thumb means a scroller the overlay did not reach.
 - **A focus ring or a "Skip to main content" bar after a click.** Some frameworks move focus to the new page's first link and draw it while
@@ -36,7 +37,13 @@ Each of these cost a retake or a day once.
 - **A sticky translucent header blurs the content under it.** That is the site, not a bug: frame the first beat so the interesting part sits
   below it (`scrollTo ... "at": 100`).
 - **Cross-dissolving two text-heavy screens is a muddy double exposure.** The default is a slide (`slideup`).
-- **A cookie banner on a fresh profile.** Dismiss it with the privacy-preserving button in `dismiss`. The visits are not real visitors.
+- **A cookie banner on a fresh profile.** Dismiss it with the privacy-preserving button in `dismiss`. The visits are not real visitors; say so
+  in the report.
+- **A date or a countdown on the page dates the video.** A "days to go" counter, today's date or a "new this week" badge makes the footage
+  wrong on a known day. Keep it out of frame, or write down the day the video goes stale.
+- **Something the owner wants kept out of the video** (a link, a section). Compare the deepest point the storyboard reaches (where the start
+  page is scrolled to, plus every `scrollBy`) with that element's y in `probe`'s output, then look at the bottom strips of the built video. A
+  storyboard that scrolls only the top of a long page never reaches it; one that scrolls further must be checked.
 
 ## The page while it plays
 
@@ -56,8 +63,19 @@ Each of these cost a retake or a day once.
   the microphone is not needed.
 - Screen Recording permission for Prodoozie is in System Settings → Privacy & Security → Screen Recording. A black recording is that permission.
 - The 3-2-1 runs before the recording starts. Do Not Disturb on is the safe state: a banner arriving during the script is on your screen.
+- A recording of a 2x display is up to about 2.5 MB a second while the page moves (a 70 s recording of a scrolling page was 166 MB; a still
+  screen is far less). Check free disk before you record.
 - A recording is kept in `~/Movies/iRecord/Projects/<name>/` (the folder keeps the name Prodoozie had before; Camera footage would sit beside the
   screen file as `.camera.mp4`, which `find-take` skips). It shows your whole desktop. Deleting the Recording from Prodoozie's Home removes its
   folder from disk: do that when the video is done.
 - **Music:** `mix-music.cjs` wants a track you may publish. -24 LUFS is the default for a bed under a silent screen recording; -18 was too
-  forward. You cannot hear the result from a script: say you measured it.
+  forward. You cannot hear the result from a script: say you measured it, ask how it sounds, and re-run with another `--lufs` (it overwrites).
+
+## The tools
+
+- **The URL band and the end card are HTML drawn by Chrome**, then laid over the video with ffmpeg's `overlay`. Not every ffmpeg build has
+  `drawtext`, so no text is drawn by ffmpeg.
+- **zsh, the macOS shell:** `echo =====` fails (a word that starts with `=` is looked up as a command), and macOS `sed -i` needs an empty
+  suffix (`sed -i '' ...`). Edit promo.json with an editor or a short script.
+- **The throwaway Chrome profile can still be written to as the browser closes**, so `run.cjs` retries its delete. A `promo-*` folder left in
+  the temp folder is from a run that was killed.
