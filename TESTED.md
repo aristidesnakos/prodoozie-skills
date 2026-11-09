@@ -1,5 +1,7 @@
 # Tested
 
+## website-promo-short
+
 Raw log of the clean-install run from dist/website-promo-short.zip (scrubbed environment, Node 23.3.0, 2026-11-05). What was not tested (Intel, other macOS versions, other browsers, 1x or external displays, other recorders) is in the "Tested on" paragraph of skills/website-promo-short/SKILL.md.
 
 ```
@@ -118,3 +120,18 @@ $ analyze-take
 $ build-video
 1080,1920,60/1,15.050000
 ```
+
+
+## install-video
+
+Run on 2026-11-09, one Apple Silicon Mac, macOS 26.4, Chrome 157, ffmpeg 8.1.2, Node 22.22, Prodoozie 1.309.0. No clean-install run yet.
+
+| What | Result |
+|---|---|
+| `render-cards.cjs examples/ph-mcp/cut.json` | 7 cards at their sizes; intro, step 3, end and thumbnail identical, pixel for pixel, to the cards of the posted Product Hunt MCP video |
+| `build-video.cjs examples/ph-mcp/cut.json` on that video's Prodoozie recording | 27.82 s against a 27.80 s plan, 1920x1080, tagged BT.709 primaries and matrix on the sRGB curve; single frames match the posted video at 68 to 77 dB; the end card's amber reads (232,163,24) decoded as BT.709 (brand: 232,163,23) |
+| `stage.cjs` serve, run, `--hide`, `--capture-open` with `opened`, `drop-last`, exit codes, stop | as documented, on stand-in commands |
+| `review.cjs`, `take.cjs newest` | on the real recording; `take.cjs writing` only on its "not writing" answer |
+
+Not run: a whole video recorded and cut with these scripts as published (the posted video used earlier versions), a recording with
+Prodoozie's "Show cursor in recordings" off, the posting steps in `references/posting.md` more than once, any other Mac, display or browser.

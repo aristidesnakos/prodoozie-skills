@@ -1,0 +1,15 @@
+<!doctype html><!-- size 1920x1080. A frame laid over a segment: the ground with a rounded hole where the picture shows, and the step's
+     number and title above it. Fields: num, title. px, py, pw, ph come from cut.json "picture", so the hole and the picture agree.
+     Quote every SVG attribute: an unquoted one (fill=white/) drops the shape without a word. -->
+<html><head><meta charset="utf-8"><link href="https://fonts.googleapis.com/css2?family=Jost:wght@500;700;900&family=Inter:wght@400;500&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet"><style>
+html,body{margin:0;width:1920px;height:1080px;overflow:hidden;background:transparent}
+</style></head><body>
+<svg width="1920" height="1080" style="position:absolute;inset:0">
+ <defs><mask id="m"><rect width="1920" height="1080" fill="white" /><rect x="{{px}}" y="{{py}}" width="{{pw}}" height="{{ph}}" rx="18" fill="black" /></mask></defs>
+ <rect width="1920" height="1080" fill="{{ground}}" mask="url(#m)" />
+ <rect x="{{pxo}}" y="{{pyo}}" width="{{pwo}}" height="{{pho}}" rx="18.5" fill="none" stroke="#2A231B" stroke-width="1.5" />
+</svg>
+<div style="position:absolute;left:84px;top:40px;display:flex;align-items:baseline;gap:22px">
+ <span style="font:500 30px 'JetBrains Mono';color:#E8A317">{{num}}</span>
+ <span style="font:500 44px/1 Jost;color:#F2ECE4;letter-spacing:-0.005em">{{title}}</span>
+</div></body></html>

@@ -1,0 +1,10 @@
+{
+  "name": "install-video",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Record a CLI, MCP or web install with Prodoozie, cut it into a short landscape video with brand cards and eased zooms, and post it on approval. A Claude Code skill.",
+  "license": "MIT",
+  "engines": {
+    "node": ">=22.12.0"
+  }
+}

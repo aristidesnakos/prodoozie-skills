@@ -1,0 +1,112 @@
+{
+  "name": "install-video",
+  "version": "0.1.0",
+  "license": "MIT",
+  "install": {
+    "to": "~/.claude/skills/install-video/",
+    "note": "Each path is relative to this manifest's own URL. Put every file at the same path under the folder above, check its sha256. Nothing to install: the scripts use only Node and ffmpeg."
+  },
+  "files": [
+    {
+      "path": "LICENSE",
+      "bytes": 1079,
+      "sha256": "1560207fb50c5ae76d2673e84979bd8cdd6ba2547010065326649261ede8948b"
+    },
+    {
+      "path": "SKILL.md",
+      "bytes": 9057,
+      "sha256": "32735e5699accc3bd3440d31dd49d8a62352c74dbc0d84c2cb7764c661d38726"
+    },
+    {
+      "path": "examples/ph-mcp/copy.md",
+      "bytes": 2044,
+      "sha256": "acd5ad62ea8d919a7070a0c90e28fc7431e0787ce27e0e81b2a7f8341c740a7d"
+    },
+    {
+      "path": "examples/ph-mcp/cut.json",
+      "bytes": 2920,
+      "sha256": "18939f2f195475522f2ad820c188270542c61e7f747efde260d0fcbe47c11f9f"
+    },
+    {
+      "path": "package.json",
+      "bytes": 320,
+      "sha256": "97c9d33b8987dab810ee6b088c475976fc446b37da3ab13684578fbae35225de"
+    },
+    {
+      "path": "references/cut-json.md",
+      "bytes": 3740,
+      "sha256": "21b159f8e2a28cb6b19e9bc24c2603d5779e128815c01138a0a4bbcf81f47980"
+    },
+    {
+      "path": "references/gotchas.md",
+      "bytes": 5564,
+      "sha256": "cbb4f22f35c0aedeb2a1f203835d94a5db81d8d4e9b2ddae17741117971e29c6"
+    },
+    {
+      "path": "references/posting.md",
+      "bytes": 7112,
+      "sha256": "ea2751ae52effb6ed93633cfe4718e7a75987acd234eb91e0a84cac52bcd1fdf"
+    },
+    {
+      "path": "scripts/build-video.cjs",
+      "bytes": 8217,
+      "sha256": "7c9d53489ad67edd6e33a5a0ae3866a20fb04ae4d70cc00012a1345ecd669567"
+    },
+    {
+      "path": "scripts/lib.cjs",
+      "bytes": 2255,
+      "sha256": "df8ad8c55844c3686414c28a79a4f1d559a268d829ef1f05d859d17492567b34"
+    },
+    {
+      "path": "scripts/render-cards.cjs",
+      "bytes": 3028,
+      "sha256": "483776f07ec20f9266aee1e909d74b2d6e394722cf4eb69d7793cb32c7c1063f"
+    },
+    {
+      "path": "scripts/review.cjs",
+      "bytes": 1998,
+      "sha256": "3c3a3726166a2b9b4022c79c8116dce6519ea16812fff76dfdc8623e1bacb2ba"
+    },
+    {
+      "path": "scripts/stage.cjs",
+      "bytes": 7399,
+      "sha256": "fe64d388c499c72a8c11a990a7b87f837e0be2972ba85aec7370e069a576ceea"
+    },
+    {
+      "path": "scripts/take.cjs",
+      "bytes": 2938,
+      "sha256": "5a7e93085afa4dfec5bbafc595c4bbad7a00615c444f7b44c2b171320ef23957"
+    },
+    {
+      "path": "scripts/term.html",
+      "bytes": 2996,
+      "sha256": "1784a3100c23c5a27c54cb1bcdf516b8ba4296faebed7c715affa8de8c527e53"
+    },
+    {
+      "path": "templates/end.html",
+      "bytes": 1042,
+      "sha256": "7ff5e871e3eb602ac071915da843136afdf6dcebb846d946d51b491d3e88086e"
+    },
+    {
+      "path": "templates/intro.html",
+      "bytes": 899,
+      "sha256": "f4dc92cffa11246d199a7656610dffb88d6a1446598c299778caad5e4ce8e72d"
+    },
+    {
+      "path": "templates/step.html",
+      "bytes": 1394,
+      "sha256": "cd7c045f87550eff8091f98735af262de4142733b15b02b70d6eb3b8886252b7"
+    },
+    {
+      "path": "templates/thumb.html",
+      "bytes": 1115,
+      "sha256": "2a0c8e66cbac808a6e5d22e1a8721eb33ad01ca77d96a937759ccb005396616d"
+    }
+  ],
+  "zip": {
+    "path": "install-video.zip",
+    "bytes": 32778,
+    "sha256": "3848c71f9fda4541c2b59b3f6ac59697082dea234affdeb7d2615adab8158afa",
+    "note": "The same files as one archive; unzip into ~/.claude/skills/."
+  }
+}

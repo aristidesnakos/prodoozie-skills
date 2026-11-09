@@ -1,0 +1,41 @@
+{
+  "note": "The Product Hunt MCP install video (posted 2026-11-09), as a cut list. Rebuilds the posted file from the Prodoozie take.",
+  "take": "~/Movies/iRecord/Projects/Untitled Recording 2/scenes/scene-001/take-001.mp4",
+  "out": "out/ph-mcp-install-16x9.mp4",
+  "workDir": "work",
+  "fps": 30,
+  "canvas": [1920, 1080],
+  "ground": "#0B0907",
+  "picture": { "x": 80, "y": 130, "w": 1760, "h": 886 },
+  "crop": { "x": 418, "w": 2940, "h": 1480 },
+  "paint": [
+    { "note": "the person's parked pointer, until it moved at 75.6 s", "mode": "delogo", "box": [790, 1630, 50, 62], "until": 75.6 }
+  ],
+  "cards": {
+    "intro": { "template": "intro", "kicker": "Product Hunt MCP · Claude Code", "title": "Product Hunt,\nin your terminal.", "sub": "One command.", "subAccent": "One sign-in." },
+    "frame1": { "template": "step", "num": "01", "title": "Copy the command from producthunt.com/mcp" },
+    "frame2": { "template": "step", "num": "02", "title": "Add it to Claude Code" },
+    "frame3": { "template": "step", "num": "03", "title": "Sign in with Product Hunt" },
+    "frame4": { "template": "step", "num": "04", "title": "Ask it something" },
+    "end": { "template": "end", "line": "Recorded with", "name": "Prodoozie", "url": "prodoozie.com" },
+    "thumb": { "template": "thumb", "kicker": "Product Hunt MCP", "title": "Product Hunt,\nin your\nterminal.", "command": "claude mcp login producthunt" }
+  },
+  "timeline": [
+    { "card": "intro", "dur": 1.6 },
+    { "note": "install page: hold, then ease in on the command and Copy", "from": 3.0, "dur": 4.2, "y": 340, "frame": "frame1",
+      "zoom": { "to": 1.25, "at": [1426, 1000], "in": [1.2, 2.2] },
+      "paint": [{ "note": "the pointer sat on the code box's 'Terminal' label: cover both", "mode": "fill", "box": [750, 1632, 162, 58], "color": "white" }] },
+    { "note": "add, typed at 1.75x", "from": 25.2, "dur": 4.0, "y": 418, "frame": "frame2", "speed": 1.75,
+      "zoom": { "to": 1.1, "at": [1300, 300], "in": [0, 3.6667] } },
+    { "note": "login typed", "from": 43.0, "dur": 3.0, "y": 418, "frame": "frame3", "speed": 1.75,
+      "zoom": { "to": 1.1, "at": [1300, 450], "in": [0, 2.8333] } },
+    { "note": "consent page", "from": 61.5, "dur": 1.4, "y": 418, "frame": "frame3" },
+    { "note": "in on Connect account, back out on success", "from": 71.6, "dur": 3.8, "y": 418, "frame": "frame3",
+      "zoom": { "to": 1.8, "at": [1689, 1173], "in": [0, 0.8], "out": [2.0667, 2.4667] } },
+    { "note": "authenticated", "from": 87.2, "dur": 1.0, "y": 418, "frame": "frame4" },
+    { "note": "the question, typed at 2x", "from": 90.4, "dur": 2.4, "y": 418, "frame": "frame4", "speed": 2.0 },
+    { "note": "the answer; Chrome's debugging bar is gone here, so the crop moves up", "from": 112.5, "dur": 4.2, "y": 300, "frame": "frame4",
+      "zoom": { "to": 1.08, "at": [1380, 1080], "in": [0, 4.2] } },
+    { "card": "end", "dur": 2.2 }
+  ]
+}

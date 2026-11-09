@@ -1,0 +1,53 @@
+<!doctype html>
+<!-- The terminal stage. Served by stage.cjs; polls log.json every 150 ms. Brand: pelt-950 ground, bone text, one amber $. -->
+<html><head><meta charset="utf-8"><title>terminal view</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  html, body { margin: 0; height: 100%; background: #0B0907; }
+  body { color: #E2DAD1; font: 400 22px/1.5 "JetBrains Mono", Menlo, monospace; }
+  #t { padding: 44px 56px 120px; white-space: pre-wrap; overflow-wrap: anywhere; }
+  .u { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .p { color: #9C9289; } .d { color: #E8A317; font-weight: 600; }
+  .c { color: #F2ECE4; } .o { color: #CFC6BC; }
+  .cur { display: inline-block; width: 0.6em; height: 1.15em; vertical-align: -0.2em; background: #E2DAD1; animation: b 1s steps(1) infinite; }
+  @keyframes b { 50% { opacity: 0; } }
+</style></head>
+<body><div id="t"></div>
+<script>
+const t = document.getElementById('t');
+let shown = 0, typing = false, first = true;
+const esc = s => s.replace(/&/g,'&amp;').replace(/</g,'&lt;');
+const word = esc(new URLSearchParams(location.search).get('prompt') || 'demo');
+const prompt = '<span class="p">' + word + '</span> <span class="d">$</span> ';
+function cursorLine() { const c = document.getElementById('cl'); if (c) c.remove();
+  const d = document.createElement('div'); d.id = 'cl'; d.innerHTML = prompt + '<span class="cur"></span>'; t.appendChild(d); }
+function bottom() { window.scrollTo(0, document.body.scrollHeight); }
+function addOut(text) { const d = document.createElement('div'); d.className = /^\s*https?:\/\/\S{60,}$/.test(text) ? 'o u' : 'o'; d.innerHTML = esc(text) || '&nbsp;'; t.appendChild(d); bottom(); }
+async function addCmd(text, animate) {
+  const c = document.getElementById('cl'); if (c) c.remove();
+  const d = document.createElement('div'); d.innerHTML = prompt + '<span class="c"></span><span class="cur"></span>'; t.appendChild(d);
+  const span = d.querySelector('.c');
+  if (!animate) { span.textContent = text; d.querySelector('.cur').remove(); return; }
+  for (let i = 0; i <= text.length; i++) { span.textContent = text.slice(0, i); bottom(); await new Promise(r => setTimeout(r, 33)); }
+  d.querySelector('.cur').remove();
+}
+async function poll() {
+  if (!typing) {
+    try {
+      const ev = await (await fetch('log.json?' + Date.now())).json();
+      if (ev.length < shown) { t.innerHTML = ''; shown = 0; }
+      typing = true;
+      while (shown < ev.length) {
+        const e = ev[shown++];
+        if (e.t === 'cmd') await addCmd(e.text, !first); else if (e.t === 'out') addOut(e.text);
+      }
+      first = false;
+      const last = ev[ev.length - 1];
+      if (!last || last.t !== 'cmd' || last.done) cursorLine(); else { const c = document.getElementById('cl'); if (c) c.remove(); }
+      bottom(); typing = false;
+    } catch (e) { typing = false; }
+  }
+  setTimeout(poll, 150);
+}
+poll();
+</script></body></html>

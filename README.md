@@ -23,7 +23,7 @@ cp -R skills/website-promo-short ~/.claude/skills/
 cd ~/.claude/skills/website-promo-short && npm install && node scripts/doctor.cjs
 ```
 
-Or unzip `dist/website-promo-short.zip` into `~/.claude/skills/`. The files are plain JavaScript and Markdown: read them before you run them.
+Or unzip `dist/website-promo-short/website-promo-short.zip` into `~/.claude/skills/`. The files are plain JavaScript and Markdown: read them before you run them.
 `npm install` fetches one package, `puppeteer-core`, and downloads no browser.
 
 Then ask Claude Code for "a promo video of my website at https://your-site.example". It runs `scripts/doctor.cjs` first and tells you what to fix.
@@ -48,16 +48,53 @@ It makes a scripted visit to a real page, which counts in that site's analytics 
 read its terms and any licence or promotion limit first; submit nothing; never post for anyone; keep the raw recording, which shows your whole
 desktop, private. The full rules are the "Hard stops" in [`SKILL.md`](skills/website-promo-short/SKILL.md).
 
+## install-video
+
+Makes a short landscape video, 1920x1080 for YouTube, X and LinkedIn, of installing a command-line tool, an MCP server or a web integration.
+Claude runs the real commands in its own shell and shows them, with their real output, on a terminal page in Chrome; it opens the real
+sign-in page and asks you before any consent click; you record the screen. Scripts cut the recording into numbered steps on a dark ground,
+with eased zooms, sped-up typing, an intro card, an end card and a thumbnail. When you ask, it posts the video too, one destination at a
+time and only after you approve the exact account and text; Product Hunt only ever as a draft.
+
+### Install
+
+From this repository:
+
+```bash
+cp -R skills/install-video ~/.claude/skills/
+```
+
+Or unzip `dist/install-video/install-video.zip` into `~/.claude/skills/`. Plain JavaScript, HTML and Markdown, no packages to install: read
+them before you run them. Then ask Claude Code for "an install video of <the tool>".
+
+### What you need
+
+- A Mac, Apple Silicon, macOS 26, a Retina display
+- Node 22.12 or newer, `ffmpeg` (`brew install ffmpeg`), Google Chrome with the Claude in Chrome extension connected
+- [Prodoozie](https://prodoozie.com) to record the screen; the edit reads its recording, and reads its colour as Prodoozie writes it
+
+### Tested on
+
+One Apple Silicon Mac on macOS 26, one Retina display, Chrome 157, Prodoozie 1.309, ffmpeg 8.1, Node 22. One video was made and posted this
+way, the [Product Hunt MCP install](https://youtu.be/76qp9LrsN8I), with earlier versions of these scripts; the scripts here rebuild that video
+from its recording. `TESTED.md` says what was run and what was not.
+
+### Use it on your own accounts
+
+The commands it records are real: they install software and sign in. The recording shows your whole screen: keep the raw file private. It
+posts nothing unless you ask, and then only after a yes per destination. The full rules are the "Hard stops" in
+[`SKILL.md`](skills/install-video/SKILL.md).
+
 ## Layout
 
 ```
-skills/website-promo-short/   the skill: SKILL.md, scripts/, references/, examples/demo-site/, package.json
-dist/                         website-promo-short.zip and manifest.json (every file, with its sha256): what prodoozie.com serves
-tools/build-dist.cjs          rebuilds dist/ from the skill; --check says whether it is current
-TESTED.md                     what was run, on what, and what was not
+skills/<name>/                 one folder per skill: SKILL.md, scripts/, references/, and what else it needs
+dist/<name>/                   <name>.zip and manifest.json (every file, with its sha256): what prodoozie.com serves for that skill
+tools/build-dist.cjs           rebuilds dist/ for every published skill; --check says whether it is current
+TESTED.md                      what was run, on what, and what was not
 ```
 
-Every change to the skill is followed by `node tools/build-dist.cjs`, and prodoozie.com serves a copy of `dist/` and of the skill's files.
+Every change to a skill is followed by `node tools/build-dist.cjs`, and prodoozie.com serves a copy of `dist/<name>/` and of the skill's files.
 
 ## Licence
 
