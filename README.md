@@ -85,6 +85,59 @@ The commands it records are real: they install software and sign in. The recordi
 posts nothing unless you ask, and then only after a yes per destination. The full rules are the "Hard stops" in
 [`SKILL.md`](skills/install-video/SKILL.md).
 
+## product-hunt-mcp-draft
+
+Makes a private Product Hunt launch draft for your own product through the Product Hunt MCP, in about seven calls where the website takes
+about 40 clicks, typing and uploads. The copy comes from your own site and docs, each claim with its source. Claude shows you the exact
+payload and writes nothing until you say yes, and it never submits or schedules the launch. If you want, Prodoozie records the run and
+`scripts/cut-video.cjs` cuts it into a 1920x1080 video: the chat on the left, a label for each call on the right, an end card.
+
+### Install
+
+Paste this into Claude Code:
+
+> Fetch https://prodoozie.com/skills/product-hunt-mcp-draft/manifest.json and install each file it lists into ~/.claude/skills/product-hunt-mcp-draft/,
+> then run npm install there. Check each file's sha256 against the manifest and tell me whether every file matches.
+
+Or by hand, from this repository:
+
+```bash
+cp -R skills/product-hunt-mcp-draft ~/.claude/skills/
+cd ~/.claude/skills/product-hunt-mcp-draft && npm install
+```
+
+Or unzip `dist/product-hunt-mcp-draft/product-hunt-mcp-draft.zip` into `~/.claude/skills/`. The files are plain JavaScript and Markdown: read
+them before you run them. `npm install` fetches one package, `puppeteer-core`, and downloads no browser; only the video needs it.
+
+Then add the Product Hunt MCP, and sign in to Product Hunt yourself when it asks:
+
+```bash
+claude mcp add --transport http --scope user producthunt https://mcp.producthunt.com/mcp
+```
+
+Start a new Claude Code session, because one that was running when the MCP was added may not see its tools, and ask for "a Product Hunt
+draft for <your product>".
+
+### What you need
+
+- For the draft: Claude Code, the Product Hunt MCP, and your own Product Hunt account
+- For the video: a Mac, Apple Silicon, macOS 26; [Prodoozie](https://prodoozie.com) with Screen Recording permission; `ffmpeg`
+  (`brew install ffmpeg`), Node 22.12 or newer, and Google Chrome
+
+### Tested on
+
+One Product Hunt account and one product, Prodoozie, new on Product Hunt, drafted once on 2026-11-09 from Claude Code in the Claude desktop
+app, on one Apple Silicon Mac on macOS 26.4 with one Retina display. Prodoozie 1.309.0 recorded the run, and `cut-video.cjs` cut it with
+Node 22, ffmpeg 8.1 and Chrome 157. Not tested: a product already on Product Hunt, resuming a draft made on the website, uploading a local
+image, makers or a team, any other Mac, macOS version or recorder. Nothing wider is claimed. `TESTED.md` says what was run.
+
+### Use it on your own product
+
+You sign in to Product Hunt yourself; Claude never types a password or authorizes for you. It makes a draft only: it never calls
+`submit_launch` with a confirmation token, which schedules the launch and notifies followers, so you launch it yourself, when you choose.
+Every write waits for a yes on its exact content. The raw recording shows your whole desktop: keep it private. The full rules are the
+"Hard stops" in [`SKILL.md`](skills/product-hunt-mcp-draft/SKILL.md).
+
 ## Layout
 
 ```

@@ -1,0 +1,62 @@
+{
+  "name": "product-hunt-mcp-draft",
+  "version": "0.1.0",
+  "license": "MIT",
+  "install": {
+    "to": "~/.claude/skills/product-hunt-mcp-draft/",
+    "note": "Each path is relative to this manifest's own URL. Put every file at the same path under the folder above, check its sha256, then run `npm install` in that folder."
+  },
+  "files": [
+    {
+      "path": "LICENSE",
+      "bytes": 1079,
+      "sha256": "1560207fb50c5ae76d2673e84979bd8cdd6ba2547010065326649261ede8948b"
+    },
+    {
+      "path": "SKILL.md",
+      "bytes": 10329,
+      "sha256": "e915e9a19ce08807c9dc826ce46f99ed0315450f82cac7d1fcadf5406e38d256"
+    },
+    {
+      "path": "examples/prodoozie/cut.json",
+      "bytes": 1317,
+      "sha256": "ed29bfeeb63b290250a9d7d2ced1f1e05beaa3aa91aba23a1c71bc64cdb54136"
+    },
+    {
+      "path": "examples/prodoozie/submission.md",
+      "bytes": 4132,
+      "sha256": "bc906842d1c3d13b1934ac2418d736398f55721659346341742d2dcb4411e223"
+    },
+    {
+      "path": "package.json",
+      "bytes": 385,
+      "sha256": "50a83b0dd647302184aefcefb96b025e3b9b5acccdc7df129bc00d1c42a98699"
+    },
+    {
+      "path": "references/cut-json.md",
+      "bytes": 1796,
+      "sha256": "4adfdd034f09d065b3c7ac1850bc772dbc6b1adfe6b886059ccc90cb4de7c227"
+    },
+    {
+      "path": "references/tools.md",
+      "bytes": 3087,
+      "sha256": "52e4e91065018223fa0aefee620f40e034625fe93c1dde0b469a18288785037a"
+    },
+    {
+      "path": "scripts/cut-video.cjs",
+      "bytes": 10094,
+      "sha256": "f8e5031f06cd830d44a4d3dfdd18d5e84aadb3dedf0ac32a94e168ad407363b9"
+    },
+    {
+      "path": "templates/submission.md",
+      "bytes": 1201,
+      "sha256": "abc9512ce048700949aac207650794aa7f3ed66a01c4f456563459abb74dae9f"
+    }
+  ],
+  "zip": {
+    "path": "product-hunt-mcp-draft.zip",
+    "bytes": 16664,
+    "sha256": "98dc0b61753b6902534c079c969e89b8dcec16e72c5aa4a4bc0471876eca4397",
+    "note": "The same files as one archive; unzip into ~/.claude/skills/ and run `npm install` in the new folder."
+  }
+}

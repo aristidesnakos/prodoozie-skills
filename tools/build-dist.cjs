@@ -16,7 +16,7 @@ const os = require('node:os');
 const path = require('node:path');
 
 const ROOT = path.resolve(__dirname, '..');
-const PUBLISHED = ['website-promo-short', 'install-video']; // a skill in skills/ that is not listed here is not packaged
+const PUBLISHED = ['website-promo-short', 'install-video', 'product-hunt-mcp-draft']; // a skill in skills/ that is not listed here is not packaged
 const DIST = path.join(ROOT, 'dist');
 const SKIP = new Set(['node_modules', 'work', 'out', '.DS_Store', '.git']);
 const check = process.argv.includes('--check');

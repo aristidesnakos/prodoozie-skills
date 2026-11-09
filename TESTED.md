@@ -135,3 +135,18 @@ Run on 2026-11-09, one Apple Silicon Mac, macOS 26.4, Chrome 157, ffmpeg 8.1.2, 
 
 Not run: a whole video recorded and cut with these scripts as published (the posted video used earlier versions), a recording with
 Prodoozie's "Show cursor in recordings" off, the posting steps in `references/posting.md` more than once, any other Mac, display or browser.
+
+## product-hunt-mcp-draft
+
+Run on 2026-11-09, one Apple Silicon Mac, macOS 26.4, one Retina display (1680x1050 points, Stage Manager on), Claude Code in the Claude
+desktop app, the Product Hunt MCP (17 tools), Prodoozie 1.309.0, Chrome 157, ffmpeg 8.1.2.
+
+| What | Result |
+|---|---|
+| The skill's steps, on Prodoozie's own launch (a new product on Product Hunt, one account) | a private draft; the recorded part was 7 MCP calls (`start_launch`, 4 × `prepare_launch_asset` by `source_url`, `update_launch`, `list_my_launches`), each write approved first on its exact content; never submitted, scheduled or given a launch date (from the run's own report, not re-run here) |
+| Clean install from `dist/product-hunt-mcp-draft/product-hunt-mcp-draft.zip`, scrubbed environment (`env -i`, Node 23.3.0, npm 10.9.0) | `npm install` added 25 packages (`puppeteer-core` 25.16.0), no browser download |
+| That install's `cut-video.cjs` on `examples/prodoozie/cut.json` (output redirected), against the run's Prodoozie recording | 1920x1080, 30 fps, 66.5 s, 2.0 MB, silent, in 61 s. Against the video made during the run: 1,994 frames each, 1,991 at 45 dB or more (mean 60.7 dB). The 3 others are the frames on a label change at 38, 50 and 57 s, where the run's video drew two labels over each other and this script draws one |
+
+Not run: a product already on Product Hunt (`product_choice` "existing"), resuming a draft made on the website, uploading a local image,
+an account with makers or a team, the steps on any other account or product, Intel, other macOS versions, other recorders. The colour of
+the video was not checked: it is tagged with the BT.709 matrix only, primaries and transfer unknown.
