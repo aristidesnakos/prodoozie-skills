@@ -1,0 +1,9 @@
+{
+  "name": "product-hunt-mcp-draft",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Prepare a Product Hunt launch draft through the Product Hunt MCP, from your own site's facts, draft only, and cut the recorded run into a 1920x1080 video. A Claude Code skill.",
+  "license": "MIT",
+  "engines": { "node": ">=22.12.0" },
+  "dependencies": { "puppeteer-core": "25.16.0" }
+}

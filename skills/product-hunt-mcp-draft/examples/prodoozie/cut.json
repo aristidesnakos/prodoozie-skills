@@ -1,0 +1,15 @@
+{
+  "take": "~/Movies/iRecord/Projects/Untitled Recording 3/scenes/scene-001/take-001.mp4",
+  "output": "~/Movies/promo-tests/ph-submission-mcp/draft-by-mcp.mp4",
+  "crop": [1308, 156, 1368, 1584],
+  "duration": 62.9,
+  "kicker": "Product Hunt, by MCP",
+  "steps": [
+    { "from": 0, "to": 17, "say": "Prodoozie's Product Hunt draft, made by MCP calls.", "note": "No browser. Every write approved first." },
+    { "from": 17, "to": 38, "call": "start_launch", "say": "One call makes the draft.", "note": "Name, tagline, description, topics, categories, pricing, maker and first comment.", "step": "call 1 of 7" },
+    { "from": 38, "to": 50, "call": "prepare_launch_asset ×4", "say": "Images straight from the site.", "note": "Thumbnail and gallery, pulled from prodoozie.com. Nothing to upload.", "step": "calls 2–5 of 7" },
+    { "from": 50, "to": 57, "call": "update_launch", "say": "One call puts them in order.", "note": "Product Hunt reports no blockers.", "step": "call 6 of 7" },
+    { "from": 57, "to": 62.9, "call": "list_my_launches", "say": "A private draft.", "note": "Nothing submitted, nothing scheduled, nothing launched.", "step": "call 7 of 7" }
+  ],
+  "end": { "big": "7 MCP calls.", "sub": "The old way: about 40 browser clicks, typing and uploads.", "url": "prodoozie.com", "seconds": 3.5 }
+}
