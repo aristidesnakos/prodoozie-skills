@@ -44,8 +44,8 @@
     },
     {
       "path": "references/posting.md",
-      "bytes": 7112,
-      "sha256": "ea2751ae52effb6ed93633cfe4718e7a75987acd234eb91e0a84cac52bcd1fdf"
+      "bytes": 7257,
+      "sha256": "3c891624379b6c0980029c279dbaa19bb82d3cebb982db460617da07463d5e71"
     },
     {
       "path": "scripts/build-video.cjs",
@@ -105,8 +105,8 @@
   ],
   "zip": {
     "path": "install-video.zip",
-    "bytes": 32778,
-    "sha256": "3848c71f9fda4541c2b59b3f6ac59697082dea234affdeb7d2615adab8158afa",
+    "bytes": 32829,
+    "sha256": "99ab8de88b63b1447793933643b198e7b592e1f567976c0175124596e6f02d09",
     "note": "The same files as one archive; unzip into ~/.claude/skills/."
   }
 }
