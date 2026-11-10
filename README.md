@@ -58,7 +58,12 @@ time and only after you approve the exact account and text; Product Hunt only ev
 
 ### Install
 
-From this repository:
+Paste this into Claude Code:
+
+> Fetch https://prodoozie.com/skills/install-video/manifest.json and install each file it lists into ~/.claude/skills/install-video/.
+> Check each file's sha256 against the manifest and tell me whether every file matches.
+
+Or by hand, from this repository:
 
 ```bash
 cp -R skills/install-video ~/.claude/skills/
