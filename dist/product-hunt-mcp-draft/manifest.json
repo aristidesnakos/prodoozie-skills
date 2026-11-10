@@ -44,8 +44,8 @@
     },
     {
       "path": "scripts/cut-video.cjs",
-      "bytes": 10094,
-      "sha256": "f8e5031f06cd830d44a4d3dfdd18d5e84aadb3dedf0ac32a94e168ad407363b9"
+      "bytes": 11993,
+      "sha256": "bbccc01d3fc56d0e1aad6d9c6e4bea86c628d66cb4aedf85ac4f9f176af2a42c"
     },
     {
       "path": "templates/submission.md",
@@ -55,8 +55,8 @@
   ],
   "zip": {
     "path": "product-hunt-mcp-draft.zip",
-    "bytes": 16664,
-    "sha256": "98dc0b61753b6902534c079c969e89b8dcec16e72c5aa4a4bc0471876eca4397",
+    "bytes": 17328,
+    "sha256": "4434f88dc1a5ea814ddfc210ebbd6f8caebb78a44daf42373cee991484708d2b",
     "note": "The same files as one archive; unzip into ~/.claude/skills/ and run `npm install` in the new folder."
   }
 }

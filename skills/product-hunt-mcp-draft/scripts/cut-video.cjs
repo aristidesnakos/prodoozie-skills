@@ -4,7 +4,8 @@
  *
  * Cuts a Full Screen recording of the chat window into a 1920x1080 video: the chat column cropped out of the take on the left, a step
  * label on the right that changes at the times cut.json gives, and an end card. Labels and the card are drawn by a throwaway headless
- * Chrome (puppeteer-core) in the Mac's own fonts; ffmpeg does the rest. Silent, 30 fps, H.264, tagged BT.709, fast start.
+ * Chrome (puppeteer-core) in the Mac's own fonts; ffmpeg does the rest. Silent, 30 fps, H.264, fast start, the take converted to BT.709 primaries and the file tagged BT.709 primaries on the sRGB
+ * curve with the BT.709 matrix, which is how Prodoozie's own Save Video tags a file.
  *
  * cut.json (paths relative to the file; every field in references/cut-json.md):
  *   { "take": "...take-001.mp4", "output": "draft-by-mcp.mp4", "crop": [x, y, w, h],
@@ -61,6 +62,19 @@ function probe(take) {
     '-show_entries', 'format=duration', '-of', 'json', take]).toString();
   const j = JSON.parse(out);
   return { w: j.streams[0].width, h: j.streams[0].height, duration: parseFloat(j.format.duration) };
+}
+
+// The take's own colour tags, as the ffmpeg `colorspace` filter step that brings it to BT.709 primaries on the sRGB curve. An untagged
+// take is read as a Prodoozie take (Display P3, sRGB curve, BT.709 matrix); a take already in BT.709 primaries needs no step.
+function takeColorspace(take) {
+  const j = JSON.parse(execFileSync('ffprobe', ['-v', 'error', '-select_streams', 'v:0', '-show_entries',
+    'stream=color_primaries,color_transfer,color_space', '-of', 'json', take]).toString()).streams[0] || {};
+  const known = v => (v && v !== 'unknown' && v !== 'reserved' ? v : null);
+  const primaries = known(j.color_primaries) || 'smpte432';
+  const trc = known(j.color_transfer) || 'iec61966-2-1';
+  const space = known(j.color_space) || 'bt709';
+  if (primaries === 'bt709' && trc === 'iec61966-2-1' && space === 'bt709') return '';
+  return `colorspace=primaries=bt709:trc=iec61966-2-1:space=bt709:range=tv:iprimaries=${primaries}:itrc=${trc}:ispace=${space}:irange=tv:format=yuv420p,`;
 }
 
 function puppeteer() {
@@ -151,23 +165,30 @@ function fitBox(cw, ch) {
     if (end) args.push('-loop', '1', '-t', String(cut.end.seconds || 3.5), '-i', end);
     args.push('-f', 'lavfi', '-t', String(D), '-i', `color=c=${cut.brand.ground.replace('#', '0x')}:s=${W}x${H}:r=${FPS}`);
     const ground = files.length + (end ? 1 : 0) + 1;
-    const chain = [`[0:v]trim=duration=${D},setpts=PTS-STARTPTS,crop=${cw}:${ch}:${cx}:${cy},scale=${box.w}:${box.h}:flags=lanczos,fps=${FPS},setsar=1[v]`,
-      `[${ground}:v][v]overlay=${box.x}:${box.y}[m0]`];
+    // Colour: the take is converted to BT.709 primaries on the sRGB curve (a Prodoozie take is Display P3 on the sRGB curve), every
+    // layer is composited in RGB so the cards keep their exact values, and the file is BT.709 YCbCr tagged BT.709 primaries, sRGB
+    // curve, BT.709 matrix. Overlaying RGB cards onto YUV would convert them with BT.601's matrix and shift the brand colours.
+    const toBT709 = takeColorspace(cut.take);
+    const chain = [`[0:v]trim=duration=${D},setpts=PTS-STARTPTS,${toBT709}crop=${cw}:${ch}:${cx}:${cy},`
+      + `scale=${box.w}:${box.h}:flags=lanczos:in_color_matrix=bt709:in_range=tv,format=gbrp,fps=${FPS},setsar=1[v]`,
+      `[${ground}:v]format=gbrp[g]`, `[g][v]overlay=${box.x}:${box.y}:format=gbrp[m0]`];
     cut.steps.forEach((s, i) => {
       const last = i === cut.steps.length - 1;
       // Half-open, so a frame on a boundary carries one label, never two.
       const enable = last ? `gte(t,${s.from})` : `gte(t,${s.from})*lt(t,${s.to})`;
-      chain.push(`[m${i}][${i + 1}:v]overlay=enable='${enable}'[m${i + 1}]`);
+      chain.push(`[m${i}][${i + 1}:v]overlay=format=gbrp:enable='${enable}'[m${i + 1}]`);
     });
     const n = cut.steps.length;
-    chain.push(`[m${n}]format=yuv420p,setsar=1[main]`);
+    const toFile = 'scale=out_color_matrix=bt709:out_range=tv,format=yuv420p,'
+      + 'setparams=color_primaries=bt709:color_trc=iec61966-2-1:colorspace=bt709:range=tv,setsar=1';
+    chain.push(`[m${n}]${toFile}[main]`);
     if (end) {
-      chain.push(`[${files.length + 1}:v]fps=${FPS},format=yuv420p,setsar=1[endv]`, '[main][endv]concat=n=2:v=1:a=0[out]');
+      chain.push(`[${files.length + 1}:v]fps=${FPS},format=gbrp,${toFile}[endv]`, '[main][endv]concat=n=2:v=1:a=0[out]');
     } else {
       chain.push('[main]null[out]');
     }
     args.push('-filter_complex', chain.join(';'), '-map', '[out]', '-c:v', 'libx264', '-crf', '20', '-preset', 'slow',
-      '-pix_fmt', 'yuv420p', '-color_primaries', 'bt709', '-color_trc', 'bt709', '-colorspace', 'bt709',
+      '-pix_fmt', 'yuv420p', '-color_primaries', 'bt709', '-color_trc', 'iec61966-2-1', '-colorspace', 'bt709', '-color_range', 'tv',
       '-movflags', '+faststart', '-an', cut.output);
     fs.mkdirSync(path.dirname(cut.output), { recursive: true });
     execFileSync('ffmpeg', args, { stdio: 'inherit' });
